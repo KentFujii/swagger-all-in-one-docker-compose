@@ -12,10 +12,9 @@ services:
     ports:
       - "8082:8080"
     volumes:
-      - ./swagger/openapi.json:/openapi.json
+      - ./openapi.json:/openapi.json
     environment:
       SWAGGER_JSON: /openapi.json
-      # API_URL: ""
 
   swagger-api:
     image: danielgtaylor/apisprout
@@ -23,25 +22,5 @@ services:
     ports:
       - "8083:8000"
     volumes:
-      - ./swagger/openapi.json:/openapi.json
+      - ./openapi.json:/openapi.json
     command: /openapi.json
-    networks:
-      swagger_link:
-        aliases:
-          - local.swagger.apisprout
-
-  swagger-nginx:
-    image: nginx:mainline-alpine
-    container_name: "swagger-nginx"
-    ports:
-      - "8084:8084"
-    volumes:
-      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
-    networks:
-      swagger_link:
-        aliases:
-          - local.swagger.api
-
-networks:
-  swagger_link:
-    external: true
