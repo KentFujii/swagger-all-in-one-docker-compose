@@ -1,6 +1,6 @@
 ## swagger-all-in-one-docker-container
 ### Overview
-I docker composed Swagger Editor, Swagger UI, Swagger mock api server(openapi: 3.x) and nginx to handle them more easily.
+I docker composed Swagger Editor, Swagger UI, Swagger mock api server(openapi: 3.x) to handle them more easily.
 If you want to write swagger spec as `swagger: "2.0"`, use `swagger2.0` branch.
 There is a sample swagger spec in this so the Editor, UI and the mock API server will run without any configuration from the start.
 All you need to do is edit the swagger spec, save as openapi.json, and restart docker. Voila, UI and the mock API server are updated.
@@ -15,7 +15,6 @@ docker-compose ps
 ----------------------------------------------------------------------------------------
 swagger-api      /usr/local/bin/apisprout / ...   Up      0.0.0.0:8083->8000/tcp
 swagger-editor   sh /usr/share/nginx/docker ...   Up      0.0.0.0:8081->8080/tcp
-swagger-nginx    nginx -g daemon off;             Up      80/tcp, 0.0.0.0:8084->8084/tcp
 swagger-ui       sh /usr/share/nginx/docker ...   Up      0.0.0.0:8082->8080/tcp
 ```
 
@@ -51,10 +50,6 @@ environment:
 - ./swagger/openapi.json is also refferenced from api in this repository.
 - However, apisprout can not add `Access-Control-Allow-Origin` to Header so I put nginx in front of swagger-api and add it to Header then proxy to swagger-api.(To make it accessable from othe domains. CORS.)
 
-### swagger-nginx
-- Placed to modify Header.
-- Mock API(swagger-api) can be accessed from `8084` port via nginx.
-- Of course, you can use the api from curl, etc.
 
   ```json
   * example
