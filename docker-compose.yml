@@ -16,6 +16,7 @@ services:
       - ./api.yaml:/api.yaml
     environment:
       SWAGGER_JSON: /api.yaml
+      # API_URL: /api.yaml
 
   swagger-editor:
     image: swaggerapi/swagger-editor
