@@ -5,17 +5,17 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./api.yaml:/api.yaml
-    command: /api.yaml --watch
+      - ./openapi.yaml:/openapi.yaml
+    command: /openapi.yaml --watch
 
   swagger-ui:
     image: swaggerapi/swagger-ui
     ports:
       - "8001:8080"
     volumes:
-      - ./api.yaml:/api.yaml
+      - ./openapi.yaml:/openapi.yaml
     environment:
-      SWAGGER_JSON: /api.yaml
+      SWAGGER_JSON: /openapi.yaml
 
   swagger-editor:
     image: swaggerapi/swagger-editor
