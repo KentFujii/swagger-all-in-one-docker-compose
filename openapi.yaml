@@ -40,6 +40,8 @@ paths:
               properties:
                 username:
                   type: string
+            example:
+              username: Kent Fujii
       responses:
         '201':
           description: Created
@@ -53,8 +55,8 @@ paths:
           description: The ID of the user to return.
           schema:
             type: integer
-            format: int64
             minimum: 1
+            maximum: 2
       responses:
         '200':
           description: A user object.
@@ -65,7 +67,6 @@ paths:
                 properties:
                   id:
                     type: integer
-                    format: int64
                   name:
                     type: string
               examples:
